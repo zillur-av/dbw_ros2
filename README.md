@@ -1,20 +1,15 @@
 # dbw_ros
-ROS2 interface to Dataspeed drive-by-wire platforms
+ROS2 interface to Dataspeed drive-by-wire platforms. This repository is modified from https://bitbucket.org/DataspeedInc/dbw_ros/src/ros2/
 
 # Launch
 
 * Joystick demo
-    * `ros2 launch dbw_fca_joystick_demo joystick_demo.launch sys:=true`
     * `ros2 launch dbw_ford_joystick_demo joystick_demo.launch sys:=true`
-    * `ros2 launch dbw_polaris_joystick_demo joystick_demo.launch sys:=true`
 * Drive-by-wire only
-    * `ros2 launch dbw_fca_can dbw.launch`
     * `ros2 launch dbw_ford_can dbw.launch`
-    * `ros2 launch dbw_polaris_can dbw.launch`
 * RViz visualization
-    * `ros2 launch dbw_fca_description rviz.launch`
     * `ros2 launch dbw_ford_description rviz.launch`
-    * `ros2 launch dbw_polaris_description rviz.launch`
+
 
 # Binaries
 
@@ -43,11 +38,12 @@ ROS2 interface to Dataspeed drive-by-wire platforms
 # Source Installation
 
 * Setup workspace
-    * ```sudo apt-get install python-wstool```
-    * ```mkdir -p ~/dbw_ws/src && cd ~/dbw_ws && wstool init src```
-    * ```wstool merge -t src https://bitbucket.org/zillur1/dbw_ros/raw/master/dbw_mkz.rosinstall```
-* Update workspace and resolve dependencies
-    * ```wstool update -t src```
+    * ```sudo apt-get install python3-wstool```
+    * ```mkdir -p ~/dbw_ws```
+    * ```cd ~/dbw_ws```
+    * ```git@github.com:zillur-av/dbw_ros2.git```
+    * ```mv dbw_ros2 src ```
+* resolve dependencies
     * ```rosdep update && rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO```
 * Install udev rules
     * ```sudo cp ~/dbw_ws/src/dataspeed_can/dataspeed_can_usb/udev/90-DataspeedUsbCanToolRules.rules /etc/udev/rules.d/```
